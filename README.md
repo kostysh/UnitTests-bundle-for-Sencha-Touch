@@ -1,17 +1,17 @@
 UnitTests-bootstrap-for-Sencha-Touch
 ====================================
 
-Learn how to use UnitTests for automated testing of Sencha Touch application
+Learn how to quickly create an environment for UnitTest driven development for Sencha Touch applications  
 
 Environment:
 ============
-System: Ubuntu Linux 12.04 x64
-Projects folder: /home/[your-user-folder]/work
-Applications folder: /home/[your-user-folder]/work/apps
-Application folder: /home/[your-user-folder]/work/apps/[your-project-name]
-Resources folder: /home/[your-user-folder]/work/resources
-Tools folder: /home/[your-user-folder]/work/tools  
-Demo project name: demo
+- System: Ubuntu Linux 12.04 x64  
+- Projects folder: /home/[your-user-folder]/work  
+- Applications folder: /home/[your-user-folder]/work/apps  
+- Application folder: /home/[your-user-folder]/work/apps/[your-project-name]  
+- Resources folder: /home/[your-user-folder]/work/resources  
+- Tools folder: /home/[your-user-folder]/work/tools  
+- Demo project name: demo  
 
 Installing:
 ===========
