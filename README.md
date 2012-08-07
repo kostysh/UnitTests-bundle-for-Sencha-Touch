@@ -27,6 +27,7 @@ Basics of using Sencha Command: http://docs.sencha.com/touch/2-0/#!/guide/comman
 Download link: http://phantomjs.org/download.html  
 1) Unzip phantomjs to your home folder (/home/[your-user-folder]/phantomjs).  
 2) Make global link to phantomjs executable:  
+        
         sudo ln -s /home/[your-user-folder]/phantomjs/bin/phantomjs /usr/local/bin/phantomjs  
 
 - Install PhantomLint and Jasmine framework  
@@ -38,6 +39,7 @@ Actual version of jslint.js (by Douglas Crockford) you can get here: https://git
 - Place PhantomLint runner scripts (run_lint.sh, JSLint-Runner.js) to 'tools' folder  
 
 - Make run_lint.sh executable. Run this command inside 'tools' folder:  
+        
         sudo chmod +x run_lint.sh
 
 - Create 'tests' folder inside your application folder   
