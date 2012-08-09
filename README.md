@@ -1,5 +1,5 @@
-UnitTests-bootstrap-bundle-for-Sencha-Touch
-===========================================
+UnitTests-bundle-for-Sencha-Touch
+=================================
 
 Create environment for UnitTest driven development for Sencha Touch applications in minutes    
 
