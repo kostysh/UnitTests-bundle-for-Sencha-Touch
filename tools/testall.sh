@@ -7,8 +7,8 @@ function checkError {
     fi
 }
 
-echo "*** PhantomLint on /app/... ***"
-phantomjs JSLint-Runner.js
+echo "*** Start tests ***"
+phantomjs Tests-Runner.js
 checkError $?
 
 ### Exit successfully

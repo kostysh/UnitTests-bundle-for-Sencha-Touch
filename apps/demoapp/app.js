@@ -1,11 +1,18 @@
+Ext.Loader.setPath({
+    'Ext.ux': 'src/ux'
+});
+
 Ext.application({
-    name: 'Unittest',
+    name: 'Demoapp',
 
     requires: [
-        'Ext.MessageBox'
+        'Ext.MessageBox',
+        'Ext.ux.util.Intervalr'
     ],
 
     views: ['Main'],
+    
+    controllers: ['Main'],
 
     icon: {
         '57': 'resources/icons/Icon.png',

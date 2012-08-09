@@ -1,10 +1,9 @@
-Ext.define('Unittest.view.Main', {
+Ext.define('Demoapp.view.Main', {
     extend: 'Ext.tab.Panel',
     xtype: 'main',
     
     requires: [
-        'Ext.TitleBar',
-        'Ext.Video'
+        'Ext.TitleBar'
     ],
     
     config: {
@@ -12,6 +11,7 @@ Ext.define('Unittest.view.Main', {
 
         items: [
             {
+                id: 'mainView',
                 title: 'Welcome',
                 iconCls: 'home',
 
@@ -22,7 +22,21 @@ Ext.define('Unittest.view.Main', {
                     {
                         docked: 'top',
                         xtype: 'titlebar',
-                        title: 'Welcome to Sencha Touch 2'
+                        title: 'Demo app'
+                    },
+                    
+                    {
+                        id: 'startBtn',
+                        xtype: 'button',
+                        text: 'Start interval'
+                    },
+                    
+                    {
+                        id: 'processBtn',
+                        xtype: 'button',
+                        padding: 20,
+                        style: 'margin-top: 10px;',
+                        text: 1
                     }
                 ]
             },
@@ -33,9 +47,9 @@ Ext.define('Unittest.view.Main', {
                 layout: 'fit',
                 padding: 4,
                 styleHtmlContent: true,
-                html: '<p><strong>UnitTests demo for Sencha Touch application</strong></p>' +
+                html: '<p><strong>UnitTests bootstrap for Sencha Touch</strong></p>' +
                       '<p>Author: Constantine Smirnov, <a href="http://mindsaur.com">http://mindsaur.com</a></p>' +
-                      '<p>GitHub: <a href="https://github.com/kostysh/UnitTests-demo-for-Sencha-Touch-application">UnitTests-demo-for-Sencha-Touch-application</a></p>',
+                      '<p>GitHub: <a href="https://github.com/kostysh/UnitTests-bootstrap-for-Sencha-Touch">UnitTests-bootstrap-for-Sencha-Touch</a></p>',
                 scrollable: 'vertical'
             }
         ]

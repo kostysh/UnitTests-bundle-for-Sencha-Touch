@@ -1,21 +1,24 @@
 /**
- * This is extended version of PhantomLint 
+ * Extended version of PhantomLint 
  * based on Arthur Kay GitHub Project: https://github.com/arthurakay/PhantomLint
+ * Key feature of this version is: multiple logging files
  * 
- * Key feature of this version is: multiple error logging
+ * @class PhantomLint
+ * @author Constantine V. Smirnov kostysh(at)gmail.com
+ * @author Arthur Kay (http://www.akawebdesign.com)
+ * @singleton
+ * 
+ * @requires UTBConfig
  */
 
 var filesystem = require('fs'),
     JSLINT;
 
-/**
- * @class PhantomLint
- * @author Constantine V. Smirnov kostysh(at)gmail.com
- * @author Arthur Kay (http://www.akawebdesign.com)
- * @singleton
- */
+if (!UTBConfig) {
+    phantom.exit(1);
+}
+
 PhantomLint = {
-    systemSlash: '/',
     
     /**
      * @property
@@ -43,15 +46,15 @@ PhantomLint = {
     jsLint   : 'assets/jslint.js',
     
     /**
-     * @property
+     * @method
      */
-    logPath   : '../logs/',
+    getLogFileName: function() {return 'error_log.txt'},
     
     /**
-     * @property
+     * @method
      */
-    logFile   : 'error_log.txt',
-
+    getAppNameByPath: function() {return null},
+    
     /**
      * @property
      */
@@ -95,11 +98,12 @@ PhantomLint = {
         //APPLY CONFIG OPTIONS
         this.applyLintOptions(config.lintOptions);
 
-        if (config.verbose !== undefined) { this.verbose = config.verbose; }
-        if (config.stopOnFirstError !== undefined) { this.stopOnFirstError = config.stopOnFirstError; }
-        if (config.jsLint !== undefined) { this.jsLint = config.jsLint; }
-        if (config.logFile !== undefined) { this.logFile = config.logFile; }
-        if (config.exclusions !== undefined) { this.exclusions = config.exclusions; }
+        if (typeof config.verbose !== 'undefined') { this.verbose = config.verbose; }
+        if (typeof config.stopOnFirstError !== 'undefined') { this.stopOnFirstError = config.stopOnFirstError; }
+        if (typeof config.jsLint !== 'undefined') { this.jsLint = config.jsLint; }
+        if (typeof config.getLogFileName === 'function') { this.getLogFileName = config.getLogFileName; }
+        if (typeof config.getAppNameByPath === 'function') { this.getAppNameByPath = config.getAppNameByPath; }
+        if (typeof config.exclusions !== 'undefined') { this.exclusions = config.exclusions; }
 
         this.log('JSLint? ' + phantom.injectJs(this.jsLint), true);
         if (!JSLINT) { phantom.exit(1); }
@@ -116,12 +120,9 @@ PhantomLint = {
      * @method
      */
     announceErrors: function(errorList, appName) {
-        if (typeof this.logPath === 'string' && typeof this.logFile === 'string') {
-            this.logToFile(errorList, appName);
-        }
-
+        this.logToFile(errorList, appName);
         this.log('\nFix Your Errors! Check the log file for more information.\n\n', true);
-        phantom.exit(1);
+//        phantom.exit(1);
     },
 
     /**
@@ -129,7 +130,7 @@ PhantomLint = {
      */
     announceSuccess: function() {
         this.log('\nSuccessfully linted yo shit.\n\n', true);
-        phantom.exit(0);
+//        phantom.exit(0);
     },
 
     /**
@@ -143,18 +144,6 @@ PhantomLint = {
         this.log(tree);
 
         return tree;
-    },
-    
-    getAppName: function(path) {
-        var subPath;
-        
-        if (path[path.length - 1] == this.systemSlash) {
-            subPath = path.substring(0, path.length - 1);
-        } else {
-            subPath = path;
-        }
-        
-        return subPath.substring(subPath.lastIndexOf(this.systemSlash) + 1);
     },
 
     /**
@@ -176,7 +165,13 @@ PhantomLint = {
 
         for (i; i < path.length; i++) {
             var currPath = path[i];
-            var currAppName = appName || this.getAppName(currPath);
+            var currAppName = appName || this.getAppNameByPath(currPath);
+            
+            if (currAppName === null) {
+                this.log('Application not registered...');
+                continue;
+            }
+            
             this.log('*** currPath: ' + currPath);
             this.log('*** currApp: ' + currAppName);
 
@@ -249,10 +244,10 @@ PhantomLint = {
         /**
          * Loop through all files
          */
-        for (var app in this.files) {
-            for (var j in this.files[app]) {
+        for (var appName in this.files) {
+            for (var j in this.files[appName]) {
 
-                file = this.files[app][j];
+                file = this.files[appName][j];
                 js   = filesystem.read(file);
                 
                 var i           = 0,
@@ -279,13 +274,13 @@ PhantomLint = {
                     }
 
                     if (this.stopOnFirstError && errorList.length > 0) {
-                        this.announceErrors(errorList, app);
+                        this.announceErrors(errorList, appName);
                     }
                 }
             }
 
             if (errorList.length > 0) {
-                this.announceErrors(errorList, app);
+                this.announceErrors(errorList, appName);
             }
         }
     },
@@ -293,11 +288,11 @@ PhantomLint = {
     /**
      *
      */
-    logToFile : function(errorList, filePrefix) {
-        if (!filePrefix) {filePrefix = '';}
+    logToFile : function(errorList, appName) {
+        
         this.log('\nWriting ' + (errorList.length / 6) + ' errors to log file.', true);
         
-        var logFileName = this.logPath + filePrefix + this.logFile;
+        var logFileName = this.getLogFileName('lint', appName);
         
         filesystem.touch(logFileName);
 
