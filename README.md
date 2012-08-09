@@ -71,80 +71,80 @@ Download link: http://phantomjs.org/download.html
         
 <!-- language: lang-js -->
         
-        /**
-         * Paths from 'tools' folder to base bundle folders
-         * @property {Object} baseFolders Object with paths
-         */
-        config.baseFolders = {
-           resources: '../resources/',
-           apps: '../apps/',
-           logs: '../logs/'
-        };
+    /**
+     * Paths from 'tools' folder to base bundle folders
+     * @property {Object} baseFolders Object with paths
+     */
+    config.baseFolders = {
+       resources: '../resources/',
+       apps: '../apps/',
+       logs: '../logs/'
+    };
 
-        /**
-         * Template names for errors logs
-         * @property {Object} logFilesTpl Object with templates
-         * date will be replaced with ISO formated date string
-         */
-        config.logFilesTpls = {
-           lint: '{app}-lint-errors-{date}.txt',// Demoapp-lint-errors-2012-08-09T17:46:21.txt
-           jasmine: '{app}-jasmine-output-{date}.html'
-        };
+    /**
+     * Template names for errors logs
+     * @property {Object} logFilesTpl Object with templates
+     * date will be replaced with ISO formated date string
+     */
+    config.logFilesTpls = {
+       lint: '{app}-lint-errors-{date}.txt',// Demoapp-lint-errors-2012-08-09T17:46:21.txt
+       jasmine: '{app}-jasmine-output-{date}.html'
+    };
 
-        /**
-         * Default tests runner script name
-         * @property testsRunner
-         */
-        config.testsRunner = 'index.html';
+    /**
+     * Default tests runner script name
+     * @property testsRunner
+     */
+    config.testsRunner = 'index.html';
 
 
-        /**
-         * Applications config
-         * @property {Object} apps Object with apps config
-         */
-        config.apps = [
-           {
-               /**
-                * Flag indicating that app should be tested (if false - not)
-                * @param {Boolean} active true||false
-                */
-               active: true,
+    /**
+     * Applications config
+     * @property {Object} apps Object with apps config
+     */
+    config.apps = [
+       {
+           /**
+            * Flag indicating that app should be tested (if false - not)
+            * @param {Boolean} active true||false
+            */
+           active: true,
 
-               /**
-                * Application name (should be unique)
-                * @param {String} name
-                */
-               name: 'Demoapp',
+           /**
+            * Application name (should be unique)
+            * @param {String} name
+            */
+           name: 'Demoapp',
 
-               /**
-                * Application folder name (path under base apps folder)
-                */
-               path: 'demoapp/',
+           /**
+            * Application folder name (path under base apps folder)
+            */
+           path: 'demoapp/',
 
-               /**
-                * Excluded paths under app folder
-                */
-               exclusions: [
-                   'sdk/'
-               ],
+           /**
+            * Excluded paths under app folder
+            */
+           exclusions: [
+               'sdk/'
+           ],
 
-               /**
-                * UnitTests folder path under app folder
-                */
-               tests: 'tests/'
-           },
+           /**
+            * UnitTests folder path under app folder
+            */
+           tests: 'tests/'
+       },
 
-        //        {
-        //            active: false,
-        //            name: 'NextApp',
-        //            path: '../apps/nextapp/',
-        //            exclusions: [
-        //                'sdk/',
-        //                'oldversion/',
-        //                'tests/'
-        //            ]
-        //        },
-        ];
+    //        {
+    //            active: false,
+    //            name: 'NextApp',
+    //            path: '../apps/nextapp/',
+    //            exclusions: [
+    //                'sdk/',
+    //                'oldversion/',
+    //                'tests/'
+    //            ]
+    //        },
+    ];
         
 Usage:  
 ======
