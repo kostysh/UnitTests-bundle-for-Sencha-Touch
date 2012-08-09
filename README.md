@@ -69,7 +69,7 @@ Download link: http://phantomjs.org/download.html
 
 - Configure enviroment (Config.js file in 'tools' folder):  
         
-        <!-- language: lang-js -->
+<!-- language: lang-js -->
         
         /**
          * Paths from 'tools' folder to base bundle folders
@@ -150,7 +150,7 @@ Usage:
 ======
 - Run testall.sh in 'tools' folder from console
 - Lint errors will be stored in logs folder
-- Jasmine output will be store in logs folder
+- Jasmine output will be stored in logs folder
 
 Useful links:  
 =============

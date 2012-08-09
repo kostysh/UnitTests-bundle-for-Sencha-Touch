@@ -47,9 +47,9 @@ Ext.define('Demoapp.view.Main', {
                 layout: 'fit',
                 padding: 4,
                 styleHtmlContent: true,
-                html: '<p><strong>UnitTests bootstrap for Sencha Touch</strong></p>' +
+                html: '<p><strong>UnitTests bundle for Sencha Touch</strong></p>' +
                       '<p>Author: Constantine Smirnov, <a href="http://mindsaur.com">http://mindsaur.com</a></p>' +
-                      '<p>GitHub: <a href="https://github.com/kostysh/UnitTests-bootstrap-for-Sencha-Touch">UnitTests-bootstrap-for-Sencha-Touch</a></p>',
+                      '<p>GitHub: <a href="https://github.com/kostysh/UnitTests-bundle-for-Sencha-Touch">UnitTests-bundle-for-Sencha-Touch</a></p>',
                 scrollable: 'vertical'
             }
         ]
