@@ -156,4 +156,4 @@ Useful links:
 =============
 - https://github.com/arthurakay/PhantomLint  
 - https://github.com/douglascrockford/JSLint  
-- http://pivotal.github.com/jasmine/  
+- https://jasmine.github.io/  
